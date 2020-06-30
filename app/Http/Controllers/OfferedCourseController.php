@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OfferedCourseRequest;
 use App\Model\OfferedCourse;
+use App\Model\Group;
+use App\Model\Course;
 use Illuminate\Http\Request;
 
 class OfferedCourseController extends Controller
@@ -14,7 +17,8 @@ class OfferedCourseController extends Controller
      */
     public function index()
     {
-        //
+        $offeredcourses = OfferedCourse::all();
+        return view('offeredcourses.index', compact('offeredcourses'));
     }
 
     /**
@@ -24,7 +28,9 @@ class OfferedCourseController extends Controller
      */
     public function create()
     {
-        //
+        $groups = Group::all();
+        $courses = Course::all();
+        return view('offeredcourses.new', compact('groups', 'courses'));
     }
 
     /**
@@ -33,9 +39,17 @@ class OfferedCourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OfferedCourseRequest $request)
     {
-        //
+        $user_id = auth()->user()->id;
+
+        $data = New OfferedCourse;
+        $data->course_id = $request->course_id;
+        $data->group_id = $request->group_id;
+        $data->user_id = $user_id;
+        $data->save();
+        
+        return redirect()->route('offeredcourse.index')->withSuccess('Course has been offered to group.');
     }
 
     /**
@@ -78,8 +92,13 @@ class OfferedCourseController extends Controller
      * @param  \App\Model\OfferedCourse  $offeredCourse
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OfferedCourse $offeredCourse)
+    public function destroy($id)
     {
-        //
+        $res = OfferedCourse::destroy($id);
+        if ($res) {
+            return back()->withSuccess(" <i class='fas fa-trash'></i> offered course has been deleted.");
+        } else {
+            return back()->withError("<i class='fas fa-times'></i> offered course not found.");
+        }
     }
 }

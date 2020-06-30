@@ -12,7 +12,7 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'dashboard') }}">
+                <a href="{{ route('home') }}">
                     <i class="nc-icon nc-bank"></i>
                     <p>{{ __('Dashboard') }}</p>
                 </a>
@@ -43,43 +43,43 @@
                 </div>
             </li> --}}
             <li class="{{ $elementActive == 'courses' ? 'active' : '' }}">
-                <a href="{{ route('course.index', 'courses') }}">
+                <a href="{{ route('course.index') }}">
                     <i class="fas fa-book"></i>
                     <p>{{ __('Courses') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'groups' ? 'active' : '' }}">
-                <a href="{{ route('group.index', 'groups') }}">
+                <a href="{{ route('group.index') }}">
                     <i class="fas fa-users"></i>
                     <p>{{ __('Groups') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'map' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'map') }}">
+            <li class="{{ $elementActive == 'offeredcourses' ? 'active' : '' }}">
+                <a href="{{ route('offeredcourse.index') }}">
                     <i class="fas fa-user-plus"></i>
                     <p>{{ __('Enroll Students') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'notifications' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'notifications') }}">
+            <li class="{{ $elementActive == 'offeredcourses' ? 'active' : '' }}">
+                <a href="{{ route('offeredcourse.index') }}">
                     <i class="fas fa-check-circle"></i>
                     <p>{{ __('Offered Courses') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'notifications' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'notifications') }}">
+                <a href="{{ route('page.index') }}">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <p>{{ __('Classes') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'notifications' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'notifications') }}">
+                <a href="{{ route('page.index') }}">
                     <i class="fas fa-user-cog"></i>
                     <p>{{ __('Portal Users') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'notifications' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'notifications') }}">
+                <a href="{{ route('page.index') }}">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>{{ __('Notifications') }}</p>
                 </a>

@@ -45,10 +45,21 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/group/{id}/destroy', 'GroupController@destroy')->name('group.destroy');
 
 	// ******* Offered Courses ******* 
-	Route::get('/offered-courses', 'OfferedCourseController@index')->name('group.index');
+	Route::get('/offered-courses', 'OfferedCourseController@index')->name('offeredcourse.index');
+	Route::get('/offered-courses/add', 'OfferedCourseController@create')->name('offeredcourse.new');
+	Route::post('/offered-courses/store', 'OfferedCourseController@store')->name('offeredcourse.store');
+	Route::get('/offered-courses/{id}/destroy', 'OfferedCourseController@destroy')->name('offeredcourse.destroy');
+
+
+	// ******* Enroll Students ******* ### NOT DONE
+	Route::get('/enrol', 'OfferedCourseController@index')->name('offeredcourse.index');
+	Route::get('/enrol/add', 'OfferedCourseController@create')->name('offeredcourse.new');
+	Route::post('/enrol/store', 'OfferedCourseController@store')->name('offeredcourse.store');
+	Route::get('/enrol/{id}/destroy', 'OfferedCourseController@destroy')->name('offeredcourse.destroy');
 });
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+	Route::get('/offered-courses/a', 'OfferedCourseController@crseate')->name('page.index');
+	// Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
 
 
