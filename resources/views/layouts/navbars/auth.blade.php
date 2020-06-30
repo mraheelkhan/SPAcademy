@@ -48,8 +48,8 @@
                     <p>{{ __('Courses') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'icons' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'icons') }}">
+            <li class="{{ $elementActive == 'groups' ? 'active' : '' }}">
+                <a href="{{ route('group.index', 'groups') }}">
                     <i class="fas fa-users"></i>
                     <p>{{ __('Groups') }}</p>
                 </a>

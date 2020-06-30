@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'courses'
+    'elementActive' => 'groups'
 ])
 
 @section('content')
@@ -26,11 +26,11 @@
                     <div class="card">
                         <div class="header row">
                             <div class="col-md-6">
-                                <h4 class="title">Courses List</h4>
+                                <h4 class="title">Groups List</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <a href="{{route('course.new')}}" class="btn btn-primary btn-round">
-                                <i class="fas fa-plus"></i>   Add New Course
+                                <a href="{{route('group.new')}}" class="btn btn-primary btn-round">
+                                <i class="fas fa-plus"></i>   Add New Group
                                </a>
                             </div>
                         </div>
@@ -41,24 +41,22 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Code</th>
-                                        <th>Fee</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $index = 1; @endphp
-                                    @foreach($courses as $course)
+                                    @foreach($groups as $group)
                                     <tr>
                                         <td>{{$index}}</td>
-                                        <td>{{ $course->name }}</td>
-                                        <td>{{ $course->code }}</td>
-                                        <td>{{ $course->price }}</td>
+                                        <td>{{ $group->name }}</td>
+                                        <td>{{ $group->code }}</td>
                                         <td>
-                                            <a href="{{route('course.edit', $course->id)}}" class="badge badge-primary">
+                                            <a href="{{route('group.edit', $group->id)}}" class="badge badge-primary">
                                                 <i class="fas fa-edit"></i> Edit 
                                             </a>
                                             | 
-                                            <a href="{{route('course.destroy', $course->id)}}" class="badge badge-danger">
+                                            <a href="{{route('group.destroy', $group->id)}}" class="badge badge-danger">
                                                 <i class="fas fa-trash"></i> Delete 
                                             </a>  
                                         </td>

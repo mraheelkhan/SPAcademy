@@ -6,6 +6,7 @@ use App\Model\Course;
 use Auth;
 use Session;
 use Illuminate\Http\Request;
+use App\Http\Requests\CourseUpdateRequest;
 
 class CourseController extends Controller
 {
@@ -74,9 +75,10 @@ class CourseController extends Controller
      * @param  \App\Model\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit($id)
     {
-        //
+        $course = Course::findOrFail($id);
+        return view('courses.edit', compact('course'));
     }
 
     /**
@@ -86,9 +88,16 @@ class CourseController extends Controller
      * @param  \App\Model\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(CourseUpdateRequest $request, $id)
     {
-        //
+        // continue from here
+        $course = Course::findOrFail($id);
+        $course->name = $request->name;
+        $course->code = $request->code;
+        $course->price = $request->fee;
+        $course->update();
+
+        return back()->withSuccess($course->name . ' course has been updated.<script> notify("success","Course has been created successfully.") </script> ');
     }
 
     /**
@@ -97,8 +106,14 @@ class CourseController extends Controller
      * @param  \App\Model\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
-        //
+        $res = Course::destroy($id);
+        if ($res) {
+            return back()->withSuccess(" <i class='fas fa-trash'></i> course has been deleted.");
+        } else {
+            return back()->withError("<i class='fas fa-times'></i> course not found.");
+        }
+
     }
 }

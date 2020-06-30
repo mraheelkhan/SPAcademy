@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GroupRequest;
+use App\Http\Requests\GroupUpdateRequest;
 use App\Model\Group;
+use Auth;
+use Session;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -14,7 +18,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::all();
+        
+        return view('groups.index', compact('groups'));
     }
 
     /**
@@ -24,7 +30,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('groups.new');
     }
 
     /**
@@ -33,9 +39,17 @@ class GroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GroupRequest $request)
     {
-        //
+        $user_id = Auth::user()->id;
+
+        $data = New Group;
+        $data->code = $request->code;
+        $data->name = $request->name;
+        $data->user_id = $user_id;
+        $data->save();
+        
+        return back()->withSuccess('Group has been created.');
     }
 
     /**
@@ -55,9 +69,10 @@ class GroupController extends Controller
      * @param  \App\Model\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $group)
+    public function edit($id)
     {
-        //
+        $group = Group::findOrFail($id);
+        return view('groups.edit', compact('group'));
     }
 
     /**
@@ -67,9 +82,14 @@ class GroupController extends Controller
      * @param  \App\Model\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(GroupUpdateRequest $request,  $id)
     {
-        //
+        $group = Group::findOrFail($id);
+        $group->name = $request->name;
+        $group->code = $request->code;
+        $group->update();
+
+        return back()->withSuccess($group->name . ' Group has been updated.<script> notify("success","Group has been created successfully.") </script> ');
     }
 
     /**
@@ -78,8 +98,13 @@ class GroupController extends Controller
      * @param  \App\Model\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy($id)
     {
-        //
+        $res = Group::destroy($id);
+        if ($res) {
+            return back()->withSuccess(" <i class='fas fa-trash'></i> course has been deleted.");
+        } else {
+            return back()->withError("<i class='fas fa-times'></i> course not found.");
+        }
     }
 }
