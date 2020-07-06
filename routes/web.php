@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/group/{id}/edit', 'GroupController@edit')->name('group.edit');
 	Route::put('/group/{id}', 'GroupController@update')->name('group.update');
 	Route::get('/group/{id}/destroy', 'GroupController@destroy')->name('group.destroy');
+	
 
 	// ******* Offered Courses ******* 
 	Route::get('/offered-courses', 'OfferedCourseController@index')->name('offeredcourse.index');
@@ -50,12 +51,18 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/offered-courses/store', 'OfferedCourseController@store')->name('offeredcourse.store');
 	Route::get('/offered-courses/{id}/destroy', 'OfferedCourseController@destroy')->name('offeredcourse.destroy');
 
+	// ******* Portal Users ******* 
+	Route::get('/users', 'UserController@index')->name('user.index');
+	Route::get('/user/{id}/destroy', 'UserController@destroy')->name('user.destroy');
+	Route::get('/user/add', 'UserController@create')->name('user.new');
+	Route::post('/user/store', 'UserController@store')->name('user.store');
 
 	// ******* Enroll Students ******* ### NOT DONE
-	Route::get('/enrol', 'OfferedCourseController@index')->name('offeredcourse.index');
-	Route::get('/enrol/add', 'OfferedCourseController@create')->name('offeredcourse.new');
-	Route::post('/enrol/store', 'OfferedCourseController@store')->name('offeredcourse.store');
-	Route::get('/enrol/{id}/destroy', 'OfferedCourseController@destroy')->name('offeredcourse.destroy');
+	Route::get('/enrol', 'EnrollmentController@index')->name('enrolstudent.index');
+	Route::get('/enrol/add', 'EnrollmentController@create')->name('enrolstudent.new');
+	Route::post('/enrol/store', 'EnrollmentController@store')->name('enrolstudent.store');
+	Route::get('/enrol/{id}/destroy', 'EnrollmentController@destroy')->name('enrolstudent.destroy');
+	Route::get('/group/{id}/details', 'EnrollmentController@show')->name('group.details');
 });
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/offered-courses/a', 'OfferedCourseController@crseate')->name('page.index');

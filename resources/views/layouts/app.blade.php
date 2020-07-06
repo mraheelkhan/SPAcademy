@@ -75,6 +75,8 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
     <script src="https://kit.fontawesome.com/81ace3acc3.js" crossorigin="anonymous"></script>
     <style>
         .card .header {
@@ -107,12 +109,11 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('paper') }}/demo/demo.js"></script>
     <script src="{{ asset('paper') }}/js/custom.js"></script>
-    <!-- Sharrre libray -->
-    <script src="../assets/demo/jquery.sharrre.js"></script>
-    
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
     @stack('scripts')
 
-    @include('layouts.navbars.fixed-plugin-js')
+    {{-- @include('layouts.navbars.fixed-plugin-js') --}}
 </body>
 
 </html>

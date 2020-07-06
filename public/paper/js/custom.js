@@ -12,3 +12,8 @@ notify = (color, message) => {
       }
     });
   }
+
+
+$(document).ready( function () {
+    $('#usersTable').DataTable();
+} );

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Model\Enrollment;
+use App\Model\Group;
+use App\Model\OfferedCourse;
+use App\User;
 use Illuminate\Http\Request;
 
 class EnrollmentController extends Controller
@@ -14,9 +17,18 @@ class EnrollmentController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::all();
+        $offeredcourses = OfferedCourse::all();
+        return view('enrol.index', compact('offeredcourses', 'groups'));
     }
 
+
+    public function allgroups($code){
+        $group = Group::where('code', $code)->first();
+        $offeredcourses = OfferedCourse::where('group_id', $group->id)->get();
+
+        return view('enrol.singlegroup', compact('group', 'offeredcourses'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -44,9 +56,11 @@ class EnrollmentController extends Controller
      * @param  \App\Model\Enrollment  $enrollment
      * @return \Illuminate\Http\Response
      */
-    public function show(Enrollment $enrollment)
+    public function show($id)
     {
-        //
+        $group = Group::findOrFail($id);
+        $users = User::where('role', 'student')->get();
+        return view('enrol.details', compact('group', 'users'));
     }
 
     /**

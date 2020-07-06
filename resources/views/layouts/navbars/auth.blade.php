@@ -54,8 +54,8 @@
                     <p>{{ __('Groups') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'offeredcourses' ? 'active' : '' }}">
-                <a href="{{ route('offeredcourse.index') }}">
+            <li class="{{ $elementActive == 'enrolstudents' ? 'active' : '' }}">
+                <a href="{{ route('enrolstudent.index') }}">
                     <i class="fas fa-user-plus"></i>
                     <p>{{ __('Enroll Students') }}</p>
                 </a>
@@ -72,8 +72,8 @@
                     <p>{{ __('Classes') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'notifications' ? 'active' : '' }}">
-                <a href="{{ route('page.index') }}">
+            <li class="{{ $elementActive == 'users' ? 'active' : '' }}">
+                <a href="{{ route('user.index') }}">
                     <i class="fas fa-user-cog"></i>
                     <p>{{ __('Portal Users') }}</p>
                 </a>
