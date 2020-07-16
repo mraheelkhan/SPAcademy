@@ -41,7 +41,7 @@
                                         @foreach($users as $user)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                           {{ $user->firstname . " " . $user->lastname . " - " . $user->email }}
-                                          <span class="badge badge-primary badge-pill">12</span>
+                                          <span class="badge badge-primary badge-pill">Enrol Now</span>
                                         </li>
                                         @endforeach
                                       </ul>
@@ -53,7 +53,7 @@
                                     @foreach($group->enrolment as $student)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                           {{ $student->user ->firstname . " " . $student->user   ->lastname . " - " . $student->user    ->email }}
-                                          <span class="badge badge-primary badge-pill">12</span>
+                                          <span class="badge badge-danger badge-pill">Delete Now</span>
                                         </li>
                                     @endforeach
                                 </div>
