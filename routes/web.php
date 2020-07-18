@@ -26,6 +26,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
+Route::group(['middleware' => 'auth'], function(){
+	
+	// ******** Classes *******
+	Route::get('/classes', 'ClassController@index')->name('class.index');
+});
 Route::group(['middleware' => 'auth'], function () {
 	// ******* Courses ******* 
 	// Route::get('courses', 'CourseController@index')->name('course.index');
@@ -63,6 +68,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/enrol/store', 'EnrollmentController@store')->name('enrolstudent.store');
 	Route::get('/enrol/{id}/destroy', 'EnrollmentController@destroy')->name('enrolstudent.destroy');
 	Route::get('/group/{id}/details', 'EnrollmentController@show')->name('group.details');
+	Route::post('/group/{id}/enrol', 'EnrollmentController@store')->name('group.enrol');
+	Route::post('/group/{id}/delete', 'EnrollmentController@destroy')->name('group.enroldelete');
 });
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/offered-courses/a', 'OfferedCourseController@crseate')->name('page.index');

@@ -47,7 +47,12 @@ class EnrollmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $enrol = new Enrollment;
+        $enrol->group_id = $request->group_id;
+        $enrol->user_id = $request->enrol_id;
+        $enrol->save();
+        return back()->withSuccess('Enrollment has been created.');
+
     }
 
     /**
@@ -60,7 +65,12 @@ class EnrollmentController extends Controller
     {
         $group = Group::findOrFail($id);
         $users = User::where('role', 'student')->get();
-        return view('enrol.details', compact('group', 'users'));
+        $userslist = User::where('role', 'student')->pluck('id');
+        $listcheck = [];
+        foreach($group->enrolment as $enrol):
+            $listcheck[] = $enrol->user_id;
+        endforeach;
+        return view('enrol.details', compact('group', 'users', 'userslist', 'listcheck'));
     }
 
     /**
@@ -92,8 +102,9 @@ class EnrollmentController extends Controller
      * @param  \App\Model\Enrollment  $enrollment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Enrollment $enrollment)
+    public function destroy(Enrollment $enrollment, Request $request)
     {
-        //
+        $delete = Enrollment::destroy($request->enrol_id);
+        return back()->withSuccess('Enrollment has been deleted.');
     }
 }
