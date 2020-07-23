@@ -66,8 +66,8 @@
                     <p>{{ __('Offered Courses') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'notifications' ? 'active' : '' }}">
-                <a href="{{ route('page.index') }}">
+            <li class="{{ $elementActive == 'classes' ? 'active' : '' }}">
+                <a href="{{ route('class.index') }}">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <p>{{ __('Classes') }}</p>
                 </a>

@@ -44,8 +44,8 @@ The above copyright notice and this permission notice shall be included in all c
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="product">
-    <meta name="twitter:site" content="@creativetim">
-    <meta name="twitter:title" content="Paper Dashboard Laravel by Creative Tim">
+    <meta name="twitter:site" content="@mraheelkhanRK">
+    <meta name="twitter:title" content="PS Academy">
 
     <meta name="twitter:description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
     <meta name="twitter:creator" content="@creativetim">
@@ -54,7 +54,7 @@ The above copyright notice and this permission notice shall be included in all c
 
     <!-- Open Graph data -->
     <meta property="fb:app_id" content="655968634437471">
-    <meta property="og:title" content="Paper Dashboard Laravel by Creative Tim" />
+    <meta property="og:title" content="PS Academy" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://www.creative-tim.com/live/paper-dashboard-laravel" />
     <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg"/>
@@ -78,6 +78,10 @@ The above copyright notice and this permission notice shall be included in all c
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
     <script src="https://kit.fontawesome.com/81ace3acc3.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('paper') }}/js/core/jquery.min.js"></script>
+{{--     
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
         .card .header {
             padding: 20px 20px 0;
@@ -96,7 +100,7 @@ The above copyright notice and this permission notice shall be included in all c
     @endguest
 
     <!--   Core JS Files   -->
-    <script src="{{ asset('paper') }}/js/core/jquery.min.js"></script>
+    
     <script src="{{ asset('paper') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('paper') }}/js/core/bootstrap.min.js"></script>
     <script src="{{ asset('paper') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -108,6 +112,11 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('paper') }}/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('paper') }}/demo/demo.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
     <script src="{{ asset('paper') }}/js/custom.js"></script>
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>

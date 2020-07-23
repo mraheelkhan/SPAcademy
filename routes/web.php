@@ -29,7 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function(){
 	
 	// ******** Classes *******
-	Route::get('/classes', 'ClassController@index')->name('class.index');
+	Route::get('/classes', 'PeriodController@index')->name('class.index');
+	Route::post('/class/store', 'PeriodController@store')->name('class.store');
+	Route::get('/class/{id}/destroy', 'PeriodController@destroy')->name('class.destroy');
 });
 Route::group(['middleware' => 'auth'], function () {
 	// ******* Courses ******* 
