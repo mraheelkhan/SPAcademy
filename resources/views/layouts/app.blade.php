@@ -31,15 +31,15 @@ The above copyright notice and this permission notice shall be included in all c
 
 
     <!--  Social tags      -->
-    <meta name="keywords" content="design system, dashboard, bootstrap 4 dashboard, bootstrap 4 design, bootstrap 4 system, bootstrap 4, bootstrap 4 uit kit, bootstrap 4 kit, paper, paper dashboard, creative tim, updivision, html dashboard, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap dashboard, responsive dashboard, laravel, laravel php, laravel php framework, free laravel admin template, free laravel admin, free laravel admin template + Front End + CRUD, crud laravel php, crud laravel, laravel backend admin dashboard">
-    <meta name="description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
+    {{-- <meta name="keywords" content="design system, dashboard, bootstrap 4 dashboard, bootstrap 4 design, bootstrap 4 system, bootstrap 4, bootstrap 4 uit kit, bootstrap 4 kit, paper, paper dashboard, creative tim, updivision, html dashboard, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap dashboard, responsive dashboard, laravel, laravel php, laravel php framework, free laravel admin template, free laravel admin, free laravel admin template + Front End + CRUD, crud laravel php, crud laravel, laravel backend admin dashboard"> --}}
+    {{-- <meta name="description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up."> --}}
 
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Paper Dashboard Laravel by Creative Tim">
-    <meta itemprop="description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
+    {{-- <meta itemprop="name" content="Paper Dashboard Laravel by Creative Tim"> --}}
+    {{-- <meta itemprop="description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up."> --}}
 
-    <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg">
+    {{-- <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg"> --}}
 
 
     <!-- Twitter Card data -->
@@ -47,22 +47,22 @@ The above copyright notice and this permission notice shall be included in all c
     <meta name="twitter:site" content="@mraheelkhanRK">
     <meta name="twitter:title" content="PS Academy">
 
-    <meta name="twitter:description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
+    {{-- <meta name="twitter:description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
     <meta name="twitter:creator" content="@creativetim">
-    <meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg">
+    <meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg"> --}}
 
 
     <!-- Open Graph data -->
-    <meta property="fb:app_id" content="655968634437471">
+    {{-- <meta property="fb:app_id" content="655968634437471">
     <meta property="og:title" content="PS Academy" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://www.creative-tim.com/live/paper-dashboard-laravel" />
     <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg"/>
     <meta property="og:description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up." />
-    <meta property="og:site_name" content="Creative Tim" />
+    <meta property="og:site_name" content="Creative Tim" /> --}}
     
     <title>
-        {{ __('Paper Dashboard by Creative Tim') }}
+        {{ __('PS Academy') }}
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />

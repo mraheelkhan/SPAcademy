@@ -16,7 +16,7 @@ class PeriodController extends Controller
      */
     public function index()
     {
-        dd(Period::where('period_at', '>', Carbon::now())->get());
+        // dd(Period::where('period_at', '>', Carbon::now())->get());
 
         // ->update([
         //     'is_done' => 1,
