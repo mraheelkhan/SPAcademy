@@ -10,6 +10,12 @@ use App\Http\Requests\CourseUpdateRequest;
 
 class CourseController extends Controller
 {
+    // Constructor
+    public function __construct()
+    {
+        // $this->middleware('isAdmin');
+    }
+
     /**
      * Display a listing of the resource.
      *

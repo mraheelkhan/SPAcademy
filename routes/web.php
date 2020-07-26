@@ -28,12 +28,15 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::group(['middleware' => 'auth'], function(){
 	
+
+	
+});
+Route::group(['middleware' => ['auth', 'category-index']], function () {
 	// ******** Classes *******
 	Route::get('/classes', 'PeriodController@index')->name('class.index');
 	Route::post('/class/store', 'PeriodController@store')->name('class.store');
 	Route::get('/class/{id}/destroy', 'PeriodController@destroy')->name('class.destroy');
-});
-Route::group(['middleware' => 'auth'], function () {
+	
 	// ******* Courses ******* 
 	// Route::get('courses', 'CourseController@index')->name('course.index');
 	Route::get('/courses', 'CourseController@index')->name('course.index');
