@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 	
 });
-Route::group(['middleware' => ['auth', 'category-index']], function () {
+Route::group(['middleware' => ['auth', 'can:passAdmin']], function () {
 	// ******** Classes *******
 	Route::get('/classes', 'PeriodController@index')->name('class.index');
 	Route::post('/class/store', 'PeriodController@store')->name('class.store');

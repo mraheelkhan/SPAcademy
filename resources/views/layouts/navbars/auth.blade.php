@@ -43,7 +43,7 @@
                 </div>
             </li> --}}
 
-            @can('isAdmin')
+            @can('passAdmin')
             <li class="{{ $elementActive == 'courses' ? 'active' : '' }}">
                 <a href="{{ route('course.index') }}">
                     <i class="fas fa-book"></i>
@@ -56,7 +56,7 @@
                     <p>{{ __('Groups') }}</p>
                 </a>
             </li>
-            @endcan
+            
             <li class="{{ $elementActive == 'enrolstudents' ? 'active' : '' }}">
                 <a href="{{ route('enrolstudent.index') }}">
                     <i class="fas fa-user-plus"></i>
@@ -81,7 +81,7 @@
                     <p>{{ __('Portal Users') }}</p>
                 </a>
             </li>
-            
+            @endcan
           
         </ul>
     </div>

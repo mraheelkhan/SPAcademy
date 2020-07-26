@@ -32,15 +32,15 @@ class AuthServiceProvider extends ServiceProvider
 
 
     public function academy(){
-        Gate::define('isAdmin', function ($user) {
+        Gate::define('passAdmin', function ($user) {
             return $user->role == 'admin';
         });
 
-        Gate::define('isStudent', function ($user) {
+        Gate::define('passStudent', function ($user) {
             return $user->role == 'student';
         });
 
-        Gate::define('isTeacher', function ($user) {
+        Gate::define('passTeacher', function ($user) {
             return $user->role == 'teacher';
         });
     }
