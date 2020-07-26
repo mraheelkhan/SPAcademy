@@ -158,14 +158,14 @@
           $('#timedate').daterangepicker({
             singleDatePicker: true,
             timePicker: true,
-            // timePicker24Hour: true,
+            timePicker24Hour: true,
             showDropdowns: true,
             minYear: 2020,
             maxYear: parseInt(moment().format('YYYY'),10),
             startDate: moment().startOf('hour'),
             // endDate: moment().startOf('hour').add(32, 'hour'),
             locale: {
-                format: 'DD-MM-YYYY hh:mm:ss'
+                format: 'DD-MM-YYYY H:mm:ss'
             }
           });
         });

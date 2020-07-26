@@ -49,8 +49,8 @@ class PeriodController extends Controller
         $time = $request->timedatetime;//->format('Y-m-d H:i:s');
         // $timedate = Carbon::createFromFormat('Y-m-d', $timedate)->format('Y.m.d');
         // $timedate = Carbon::createFromFormat('m/d/Y h:i:s', $request->timedate)->format('Y-m-d');
+        $timedate = date('Y-m-d H:i:s', strtotime($timedate));
         // dd($timedate);
-        $timedate = date('Y-m-d h:i:s', strtotime($timedate));
         // strtotime($timedate);
         $course_id = $request->course_id;
         $link = $request->link;
