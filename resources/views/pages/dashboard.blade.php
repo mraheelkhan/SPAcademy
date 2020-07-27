@@ -14,6 +14,7 @@
     <div class="row">
         <div class="col-md-12">
             <h2> Upcoming Classes</h2>
+            <p> If you don't see any class, please wait for your classes. we show you up coming today classes only.</p>
         </div>
     </div>
     <div class="row">
