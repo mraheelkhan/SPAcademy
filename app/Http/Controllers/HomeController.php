@@ -35,6 +35,7 @@ class HomeController extends Controller
                     ->where('is_done', 0)
                     ->orderBy('period_at', 'desc')
                     ->get();
+        //checking if difference is lessthan 12 hours
         foreach($classes as $class):
             $to = Carbon::createFromFormat('Y-m-d H:s:i', $class->period_at);
             $from = Carbon::createFromFormat('Y-m-d H:s:i', Carbon::now());
