@@ -41,7 +41,8 @@ class HomeController extends Controller
             $from = Carbon::createFromFormat('Y-m-d H:s:i', Carbon::now());
 
             $diff_in_hours = $to->diffInHours($from);
-            $class->difference = $diff_in_hours;
+            $class->difference = $diff_in_hours;-
+            // if difference is lessthan 12 hours, do show the classes to student
             if($diff_in_hours < 12){
                 $class->isShow = true;
             } else {
