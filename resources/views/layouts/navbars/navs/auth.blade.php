@@ -51,7 +51,7 @@
                     </div>
                 </li> --}}
                 <li class="nav-item btn-rotate dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink2"
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="nc-icon nc-settings-gear-65"></i>
                         <p>
@@ -63,7 +63,9 @@
                             @csrf
                         </form>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">{{ auth()->user()->firstname . " " . auth()->user()->lastname }}</a>
                             <a class="dropdown-item" onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
+                             
                             {{-- <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('My profile') }}</a> --}}
                         </div>
                     </div>

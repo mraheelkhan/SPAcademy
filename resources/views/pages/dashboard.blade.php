@@ -19,7 +19,7 @@
     </div>
     <div class="row">
         @foreach($classes as $class)
-        @if(!$class->isShow)
+        @if($class->isShow)
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
                 <div class="card-body ">
@@ -32,7 +32,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">
-                                    {{ date("d-m-Y h:m:s a", strtotime($class->period_at))}}
+                                    {{ date("d-m-Y H:m:s a", strtotime($class->period_at))}}
                                 </p>
                                 <p class="card-title">{{ $class->course->course->name }}
                                     <p>
