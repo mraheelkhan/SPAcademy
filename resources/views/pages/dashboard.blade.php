@@ -20,6 +20,7 @@
     <div class="row">
         @foreach($classes as $class)
         @if($class->isShow)
+        {{-- to whether show class or not --}}
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
                 <div class="card-body ">
