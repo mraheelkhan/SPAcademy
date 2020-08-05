@@ -13,6 +13,10 @@
 <div class="content">
     <div class="row">
         <div class="col-md-12">
+            Get register yourself in courses.
+            <a href="#" class="btn btn-primary">Register</a>
+        </div>
+        <div class="col-md-12">
             <h2> Upcoming Classes</h2>
             <p> If you don't see any class, please wait for your classes. we show you up coming today classes only.</p>
         </div>
@@ -23,7 +27,7 @@
         {{-- to whether show class or not --}}
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
-                <div class="card-body ">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-5 col-md-4">
                             <div class="icon-big text-center icon-success">
@@ -35,13 +39,14 @@
                                 <p class="card-category">
                                     {{ date("d-m-Y H:m:s a", strtotime($class->period_at))}}
                                 </p>
-                                <p class="card-title">{{ $class->course->course->name }}
-                                    <p>
+                                <p class="card-title">
+                                    {{ $class->course->course->name }}
+                                <p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer ">
+                <div class="card-footer">
                     <hr>
                     <div class="stats">
                         <a href="{{ $class->link }}" target="_blank">
