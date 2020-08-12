@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-12">
             Get register yourself in courses.
-            <a href="#" class="btn btn-primary">Register</a>
+            <a href="{{route('applyCourse')}}" class="btn btn-primary">Register</a>
         </div>
         <div class="col-md-12">
             <h2> Upcoming Classes</h2>

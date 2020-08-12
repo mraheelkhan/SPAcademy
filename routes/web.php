@@ -33,9 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 Route::group(['middleware' => 'auth'], function(){
-	
-
-	
+	// ******** Apply Courses *******
+	Route::get('/apply', 'HomeController@index')->name('applyCourse');
 });
 Route::group(['middleware' => ['auth', 'can:passAdmin']], function () {
 	// ******** Classes *******
