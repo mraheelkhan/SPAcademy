@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Enrollment;
-use App\Model\Group;
-use App\Model\OfferedCourse;
+use App\Model\Grade;
+use App\Model\Course;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -17,9 +17,9 @@ class EnrollmentController extends Controller
      */
     public function index()
     {
-        $groups = Group::all();
-        $offeredcourses = OfferedCourse::all();
-        return view('enrol.index', compact('offeredcourses', 'groups'));
+        // $groups = Grade::all();
+        $courses = Course::all();
+        return view('enrol.index', compact('courses'));
     }
 
 
@@ -48,8 +48,9 @@ class EnrollmentController extends Controller
     public function store(Request $request)
     {
         $enrol = new Enrollment;
-        $enrol->group_id = $request->group_id;
+        $enrol->course_id = $request->course_id;
         $enrol->user_id = $request->enrol_id;
+        $enrol->created_by = auth()->user()->id;
         $enrol->save();
         return back()->withSuccess('Enrollment has been created.');
 
@@ -63,14 +64,17 @@ class EnrollmentController extends Controller
      */
     public function show($id)
     {
-        $group = Group::findOrFail($id);
-        $users = User::where('role', 'student')->get();
+        $course = Course::findOrFail($id);
+        $users = User::where('role', 'student')->where('grade_id', $course->grade_id)->get();
         $userslist = User::where('role', 'student')->pluck('id');
         $listcheck = [];
-        foreach($group->enrolment as $enrol):
+
+        // dd($course->enrollments);
+        foreach($course->enrollment as $enrol):
             $listcheck[] = $enrol->user_id;
         endforeach;
-        return view('enrol.details', compact('group', 'users', 'userslist', 'listcheck'));
+        // return "bac";
+        return view('enrol.details', compact('course', 'users', 'userslist', 'listcheck'));
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class GroupUsers extends Migration
+class AddGradeIdToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class GroupUsers extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('grade_id');
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ class GroupUsers extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }

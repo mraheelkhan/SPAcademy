@@ -44,9 +44,9 @@
                                                 <div class="col-md-9">
                                                     <div class="form-group">
                                                     <select name="course_id" class="form-control" required>
-                                                        <option value="">Select Offered Course</option>
-                                                        @foreach($offeredcourses as $course)
-                                                        <option value="{{$course->id}}" {{ old('course_id') == $course->id ? "selected" : "" }}>{{ $course->course->name . " - " . $course->group->name }}</option>
+                                                        <option value="">Select Course</option>
+                                                        @foreach($courses as $course)
+                                                        <option value="{{$course->id}}" {{ old('course_id') == $course->id ? "selected" : "" }}>{{ $course->name . " - " . $course->grade->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     </div>
@@ -128,8 +128,8 @@
                                     @foreach($periods as $class)
                                     <tr>
                                         <td>{{$index}}</td>
-                                        <td>{{ $class->course->course->name }}</td>
-                                        <td>{{ $class->group->name }}</td>
+                                        <td>{{ $class->course->name }}</td>
+                                        <td>{{ $class->grade->name }}</td>
                                         <td>{{ $class->is_done == 0 ? "Up Coming" : "Done" }}</td>
                                         <td> <a target="_blank" href="{{ $class->link }}">{{ $class->link }}</a></td>
                                         <td>{{ date("d-m-Y", strtotime($class->period_at))}}</td>

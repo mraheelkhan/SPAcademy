@@ -34,7 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::group(['middleware' => 'auth'], function(){
 	// ******** Apply Courses *******
-	Route::get('/apply', 'HomeController@index')->name('applyCourse');
+	Route::get('/apply', 'HomeController@applycourse')->name('applyCourse');
+	Route::get('/apply/list', 'HomeController@showApplicants')->name('applyList');
+	Route::post('/apply/store', 'HomeController@applyStore')->name('applyStore');
 });
 Route::group(['middleware' => ['auth', 'can:passAdmin']], function () {
 	// ******** Classes *******
@@ -51,13 +53,13 @@ Route::group(['middleware' => ['auth', 'can:passAdmin']], function () {
 	Route::put('/course/{id}', 'CourseController@update')->name('course.update');
 	Route::get('/course/{id}/destroy', 'CourseController@destroy')->name('course.destroy');
 
-	// ******* Groups ******* 
-	Route::get('/groups', 'GroupController@index')->name('group.index');
-	Route::get('/group/add', 'GroupController@create')->name('group.new');
-	Route::post('/group/store', 'GroupController@store')->name('group.store');
-	Route::get('/group/{id}/edit', 'GroupController@edit')->name('group.edit');
-	Route::put('/group/{id}', 'GroupController@update')->name('group.update');
-	Route::get('/group/{id}/destroy', 'GroupController@destroy')->name('group.destroy');
+	// ******* Grades ******* 
+	Route::get('/grades', 'GradeController@index')->name('group.index');
+	Route::get('/grade/add', 'GradeController@create')->name('group.new');
+	Route::post('/grade/store', 'GradeController@store')->name('group.store');
+	Route::get('/grade/{id}/edit', 'GradeController@edit')->name('group.edit');
+	Route::put('/grade/{id}', 'GradeController@update')->name('group.update');
+	Route::get('/grade/{id}/destroy', 'GradeController@destroy')->name('group.destroy');
 	
 
 	// ******* Offered Courses ******* 
@@ -77,9 +79,9 @@ Route::group(['middleware' => ['auth', 'can:passAdmin']], function () {
 	Route::get('/enrol/add', 'EnrollmentController@create')->name('enrolstudent.new');
 	Route::post('/enrol/store', 'EnrollmentController@store')->name('enrolstudent.store');
 	Route::get('/enrol/{id}/destroy', 'EnrollmentController@destroy')->name('enrolstudent.destroy');
-	Route::get('/group/{id}/details', 'EnrollmentController@show')->name('group.details');
-	Route::post('/group/{id}/enrol', 'EnrollmentController@store')->name('group.enrol');
-	Route::post('/group/{id}/delete', 'EnrollmentController@destroy')->name('group.enroldelete');
+	Route::get('/course/{id}/details', 'EnrollmentController@show')->name('group.details');
+	Route::post('/course/{id}/enrol', 'EnrollmentController@store')->name('group.enrol');
+	Route::post('/course/{id}/delete', 'EnrollmentController@destroy')->name('group.enroldelete');
 });
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/offered-courses/a', 'OfferedCourseController@crseate')->name('page.index');

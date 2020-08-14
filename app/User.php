@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Grade;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,11 @@ class User extends Authenticatable
     public function role(){
         return $this->hasOne(Role::class, 'id', 'role_id' )->withDefault();
     }
+
+    public function grade(){
+        return $this->belongsTo(Grade::class, 'grade_id', 'id')->withDefault();
+    }
+
     public function hasAccess(array $permissions)
     {
         if($this->role->hasAccess($permissions)){

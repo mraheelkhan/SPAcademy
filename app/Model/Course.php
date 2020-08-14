@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    public function enrollmentc(){
-        $this->hasMany('App\Enrollment')->withDefault();
+    public function grade(){
+        return $this->belongsTo(Grade::class, 'grade_id', 'id')->withDefault();
+    }
+    public function enrollment(){
+    	return $this->hasMany(Enrollment::class, 'course_id', 'id');
     }
 }

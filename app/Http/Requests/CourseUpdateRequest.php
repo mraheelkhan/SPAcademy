@@ -27,7 +27,7 @@ class CourseUpdateRequest extends FormRequest
         return [
             // 'code' => ['required', 'min:2', 'max:5', Rule::unique("courses")->ignore($this->code)]
             // 'code' => ['required', 'min:2', 'max:5'],
-            'code' => 'required|min:2|max:5|unique:courses,code,' . $this->id,
+            'grade_id' => 'required',
             'name' => ['required', 'min:3', 'max:150'],
             'fee' => ['required', 'numeric']
         ];

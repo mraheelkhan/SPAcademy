@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->integer('price')->nullable();
             $table->text('description')->nullable();
             $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('grade_id')->references('id')->on('grades');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

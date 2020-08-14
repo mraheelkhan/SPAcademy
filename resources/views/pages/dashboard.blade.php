@@ -40,7 +40,7 @@
                                     {{ date("d-m-Y H:m:s a", strtotime($class->period_at))}}
                                 </p>
                                 <p class="card-title">
-                                    {{ $class->course->course->name }}
+                                    {{ $class->course->name }}
                                 <p>
                             </div>
                         </div>

@@ -4,15 +4,14 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Period extends Model
+class ApplyCourse extends Model
 {
-
-    // protected $dates = ['period_at'];
+    protected $table = "apply_courses";
     public function course(){
         return $this->belongsTo(Course::class, 'course_id', 'id')->withDefault();
     }
 
-    public function grade(){
-        return $this->belongsTo(Grade::class)->withDefault();
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id', 'id')->withDefault();
     }
 }

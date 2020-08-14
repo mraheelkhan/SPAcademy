@@ -16,8 +16,8 @@ class CreatePeriodsTable extends Migration
         Schema::create('periods', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('offered_course_id')->references('id')->on('offered_courses');
-            $table->foreignId('group_id')->references('id')->on('groups');
+            $table->foreignId('course_id')->references('id')->on('courses');
+            $table->foreignId('grade_id')->references('id')->on('grades');
             $table->integer('status')->default(1);
             $table->integer('is_done')->default(0);
             $table->string('link')->nullable();

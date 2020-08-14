@@ -7,6 +7,7 @@ use Auth;
 use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\CourseUpdateRequest;
+use App\Model\Grade;
 
 class CourseController extends Controller
 {
@@ -35,7 +36,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('courses.new');
+        $grades = Grade::all();
+        return view('courses.new', compact('grades'));
     }
 
     /**
@@ -47,14 +49,15 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'code' => 'required|min:2|max:5|unique:courses',
+            // 'code' => 'required|min:2|max:5|unique:courses',
+            'grade_id' => 'required',
             'name' => 'required|min:3|max:150',
             'fee' => 'required|numeric',
         ]);
         $user_id = Auth::user()->id;
 
         $data = New Course;
-        $data->code = $request->code;
+        $data->grade_id = $request->grade_id;
         $data->name = $request->name;
         $data->price = $request->fee;
         $data->user_id = $user_id;
@@ -84,7 +87,8 @@ class CourseController extends Controller
     public function edit($id)
     {
         $course = Course::findOrFail($id);
-        return view('courses.edit', compact('course'));
+        $grades = Grade::all();
+        return view('courses.edit', compact('course', 'grades'));
     }
 
     /**
@@ -99,7 +103,7 @@ class CourseController extends Controller
         // continue from here
         $course = Course::findOrFail($id);
         $course->name = $request->name;
-        $course->code = $request->code;
+        $course->grade_id = $request->grade_id;
         $course->price = $request->fee;
         $course->update();
 

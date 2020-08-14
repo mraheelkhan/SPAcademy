@@ -31,7 +31,7 @@
                     <div class="card">
                         <div class="header row">
                             <div class="col-md-6">
-                                <h4 class="title">Group List</h4>
+                                <h4 class="title">{{$course->name . " - " . $course->grade->name }}  List</h4>
                             </div>
                         </div>
                         <div class="content">
@@ -42,13 +42,13 @@
                                         @if(!in_array($user->id, $listcheck))
                                        
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <form action="{{route('group.enrol',$group->id)}}" method="POST">
+                                            <form action="{{route('group.enrol',$course->id)}}" method="POST">
                                                 @csrf
                                                 <label>
                                                     {{ $user->firstname . " " . $user->lastname . " - " . $user->email }}
                                                 </label>
                                                 <input type="hidden" value="{{$user->id}}" name="enrol_id"/>
-                                                <input type="hidden" value="{{$group->id}}" name="group_id"/>
+                                                <input type="hidden" value="{{$course->id}}" name="course_id"/>
                                                 <button type="submit" class="badge badge-primary badge-pill">Enrol Now</button>
                                             </form>
                                          
@@ -63,16 +63,16 @@
                             <div class="row p-1">
                                 <div class="col-md-6 m-5">
                                     <h2> Already Enrolled Students </h2>    
-                                    @foreach($group->enrolment as $student)
+                                    @foreach($course->enrollment as $student)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                           
-                                          <form action="{{route('group.enroldelete',$group->id)}}" method="POST">
+                                          <form action="{{route('group.enroldelete',$course->id)}}" method="POST">
                                             @csrf
                                             <label>
                                                 {{ $student->user ->firstname . " " . $student->user   ->lastname . " - " . $student->user    ->email }}
                                             </label>
                                             <input type="hidden" value="{{$student->id}}" name="enrol_id"/>
-                                            <input type="hidden" value="{{$group->id}}" name="group_id"/>
+                                            <input type="hidden" value="{{$course->id}}" name="group_id"/>
                                             <button type="submit" class="badge badge-danger badge-pill">Delete</button>
                                         </form>
                                           {{-- <span class="badge badge-danger badge-pill">Delete Now</span> --}}

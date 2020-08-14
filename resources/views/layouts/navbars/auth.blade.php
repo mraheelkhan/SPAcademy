@@ -17,6 +17,14 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
+            @cannot('passAdmin')
+            <li class="{{ $elementActive == 'register-course' ? 'active' : '' }}">
+                <a href="{{ route('applyCourse') }}">
+                    <i class="nc-icon nc-bank"></i>
+                <p>{{ __('Register Course') }}  
+                </a>
+            </li>
+            @endcannot
             {{-- <li class="{{ $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#laravelExamples">
                     <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i>
@@ -44,6 +52,18 @@
             </li> --}}
 
             @can('passAdmin')
+            @php 
+            $newApplicants = App\Model\ApplyCourse::where('is_new', true)->count();
+            @endphp
+            <li class="{{ $elementActive == 'applicants' ? 'active' : '' }}">
+                <a href="{{ route('applyList') }}">
+                    <i class="nc-icon nc-bank"></i>
+                <p>{{ __('Applicant List') }}  
+                    @if($newApplicants > 0)
+                    <span class="badge badge-success">{{ $newApplicants }}</span></p>
+                    @endif
+                </a>
+            </li>
             <li class="{{ $elementActive == 'courses' ? 'active' : '' }}">
                 <a href="{{ route('course.index') }}">
                     <i class="fas fa-book"></i>
@@ -53,7 +73,7 @@
             <li class="{{ $elementActive == 'groups' ? 'active' : '' }}">
                 <a href="{{ route('group.index') }}">
                     <i class="fas fa-users"></i>
-                    <p>{{ __('Groups') }}</p>
+                    <p>{{ __('Grades') }}</p>
                 </a>
             </li>
             
@@ -63,12 +83,12 @@
                     <p>{{ __('Enroll Students') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'offeredcourses' ? 'active' : '' }}">
+            {{-- <li class="{{ $elementActive == 'offeredcourses' ? 'active' : '' }}">
                 <a href="{{ route('offeredcourse.index') }}">
                     <i class="fas fa-check-circle"></i>
                     <p>{{ __('Offered Courses') }}</p>
                 </a>
-            </li>
+            </li> --}}
             <li class="{{ $elementActive == 'classes' ? 'active' : '' }}">
                 <a href="{{ route('class.index') }}">
                     <i class="fas fa-chalkboard-teacher"></i>

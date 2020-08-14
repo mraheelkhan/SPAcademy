@@ -49,14 +49,19 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Course Code') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Select Grade') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="text" name="code" class="form-control" value="{{ old('code') ? old('code') : $course->code}}" placeholder="Course Code" required>
+                                    <select name="grade_id" class="form-control">
+                                        <option value="">Select Grade</option>
+                                        @foreach($grades as $grade)
+                                        <option value="{{$grade->id}}" {{ old('grade_id') == $grade->id ? "selected" : "" }}>{{ $grade->name }}</option>
+                                        @endforeach
+                                    </select>
                                     </div>
-                                    @if ($errors->has('code'))
+                                    @if ($errors->has('name'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('code') }}</strong>
+                                            <strong>{{ $errors->first('name') }}</strong>
                                         </span>
                                     @endif
                                 </div>

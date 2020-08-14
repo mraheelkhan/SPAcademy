@@ -33,10 +33,10 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Group Name') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Grade Name') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                    <input type="text" name="name" class="form-control" value="{{ old('name')}}" placeholder="Group Name" required>
+                                    <input type="text" name="name" class="form-control" value="{{ old('name')}}" placeholder="Grade Name" required>
                                     </div>
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
@@ -46,10 +46,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3 col-form-label">{{ __('Group Code') }}</label>
+                                <label class="col-md-3 col-form-label">{{ __('Grade Code') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <input type="text" name="code" class="form-control" value="{{ old('code')}}" placeholder="Group Code" required>
+                                        <input type="text" name="code" class="form-control" value="{{ old('code')}}" placeholder="Grade Code" required>
                                     </div>
                                     @if ($errors->has('code'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">

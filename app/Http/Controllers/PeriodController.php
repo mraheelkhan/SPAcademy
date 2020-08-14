@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Group;
-use App\Model\OfferedCourse;
+use App\Model\Grade;
+use App\Model\Course;
 use App\Model\Period;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -16,15 +16,12 @@ class PeriodController extends Controller
      */
     public function index()
     {
-        // dd(Period::where('period_at', '>', Carbon::now())->get());
+        $periods = Period::where('period_at', '<', Carbon::now())
+        ->update(['is_done' => 1 ]);
 
-        // ->update([
-        //     'is_done' => 1,
-        // ]);
-        $groups = Group::all();
-        $offeredcourses = OfferedCourse::all();
+        $courses = Course::all();
         $periods = Period::orderBy('period_at', 'desc')->get();
-        return view('classes.index', compact('offeredcourses', 'groups', 'periods'));
+        return view('classes.index', compact('courses', 'periods'));
     }
 
     /**
@@ -55,15 +52,15 @@ class PeriodController extends Controller
         $course_id = $request->course_id;
         $link = $request->link;
 
-        $offeredcourses = OfferedCourse::findOrFail($course_id);
-        $group_id = $offeredcourses->group_id;
+        $courses = Course::findOrFail($course_id);
+        $grade_id = $courses->grade_id;
         // $time = date("d-m-Y h:i:s", strtotime($timedate));
 
 
         $class = new Period;
         $class->user_id = auth()->user()->id;
-        $class->offered_course_id  = $course_id;
-        $class->group_id   = $group_id ;
+        $class->course_id  = $course_id;
+        $class->grade_id   = $grade_id;
         $class->period_at = $timedate;
         $class->period_time = $time;
         $class->link = $link;
@@ -80,7 +77,7 @@ class PeriodController extends Controller
      */
     public function show($id)
     {
-        $offeredCourses = OfferedCourse::where("group_id", $id)->get();
+        $offeredCourses = Course::where("grade_id", $id)->get();
         return view('classes.details', compact('offeredCourses'));
     }
 
