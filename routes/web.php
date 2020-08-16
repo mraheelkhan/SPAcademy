@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/apply', 'HomeController@applycourse')->name('applyCourse');
 	Route::get('/apply/list', 'HomeController@showApplicants')->name('applyList');
 	Route::post('/apply/store', 'HomeController@applyStore')->name('applyStore');
+	Route::post('/apply/enrol', 'HomeController@enrolApplicants')->name('enrol.applicant');
+	Route::get('/apply/{id}/destroy', 'HomeController@applyDestroy')->name('applyDestroy');
 });
 Route::group(['middleware' => ['auth', 'can:passAdmin']], function () {
 	// ******** Classes *******

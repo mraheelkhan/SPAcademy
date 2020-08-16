@@ -55,12 +55,12 @@
             @php 
             $newApplicants = App\Model\ApplyCourse::where('is_new', true)->count();
             @endphp
-            <li class="{{ $elementActive == 'applicants' ? 'active' : '' }}">
+            <li class="{{ $newApplicants > 0 ? 'bg-success' : '' }} {{ $elementActive == 'applicants' ? 'active' : '' }}">
                 <a href="{{ route('applyList') }}">
                     <i class="nc-icon nc-bank"></i>
                 <p>{{ __('Applicant List') }}  
                     @if($newApplicants > 0)
-                    <span class="badge badge-success">{{ $newApplicants }}</span></p>
+                    <span class="badge badge-info   ">{{ $newApplicants }}</span></p>
                     @endif
                 </a>
             </li>

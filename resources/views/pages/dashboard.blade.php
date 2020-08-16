@@ -11,6 +11,7 @@
     }
 </style>
 <div class="content">
+    @cannot('passAdmin')
     <div class="row">
         <div class="col-md-12">
             Get register yourself in courses.
@@ -21,6 +22,67 @@
             <p> If you don't see any class, please wait for your classes. we show you up coming today classes only.</p>
         </div>
     </div>
+    @endcannot
+    @can('passAdmin')
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-warning">
+                                <i class="nc-icon nc-globe text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="card-category">New Applicants</p>
+                                <p class="card-title">{{ $newApplicants }}
+                                    <p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <a href="{{ route('applyList') }}">
+                            <i class="fa fa-refresh"></i> Check  Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-warning">
+                                <i class="nc-icon nc-globe text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="card-category">Registered Students</p>
+                                <p class="card-title">{{ $registeredStudents }}
+                                    <p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <a href="{{ route('applyList') }}">
+                            <i class="fa fa-refresh"></i> Check  Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endcan
     <div class="row">
         @foreach($classes as $class)
         @if($class->isShow)
