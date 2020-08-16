@@ -116,6 +116,26 @@
                                         </span>
                                     @endif
                                 </div>
+                                <p class="text-left"> Select grade </p>
+                                <div class="input-group">
+                                   
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="nc-icon nc-badge"></i>
+                                        </span>
+                                    </div>
+                                    <select class="form-control" name="grade_id">
+                                        <option value="none">None (Instructor)</option>
+                                        @foreach($grades as $grade)
+                                        <option value="{{$grade->id}}">{{$grade->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('grade_id'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('grade_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 <div class="form-check text-left invisible">
                                     <label class="form-check-label">
                                         <input class="form-check-input" name="agree_terms_and_conditions" type="checkbox" checked>

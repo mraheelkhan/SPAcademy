@@ -41,6 +41,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Grade</th>
+                                        <th>Instructor</th>
                                         <th>Fee</th>
                                         <th>Actions</th>
                                     </tr>
@@ -52,6 +53,7 @@
                                         <td>{{$index}}</td>
                                         <td>{{ $course->name }}</td>
                                         <td>{{ $course->grade->name }}</td>
+                                        <td>{{ $course->instructor->firstname . "  " . $course->instructor->lastname }}</td>
                                         <td>{{ $course->price }}</td>
                                         <td>
                                             <a href="{{route('course.edit', $course->id)}}" class="badge badge-primary">

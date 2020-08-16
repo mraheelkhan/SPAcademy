@@ -8,6 +8,7 @@ use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\CourseUpdateRequest;
 use App\Model\Grade;
+use App\User;
 
 class CourseController extends Controller
 {
@@ -37,7 +38,8 @@ class CourseController extends Controller
     public function create()
     {
         $grades = Grade::all();
-        return view('courses.new', compact('grades'));
+        $users = User::where('role', 'instructor')->get();
+        return view('courses.new', compact('grades', 'users'));
     }
 
     /**
@@ -60,6 +62,7 @@ class CourseController extends Controller
         $data->grade_id = $request->grade_id;
         $data->name = $request->name;
         $data->price = $request->fee;
+        $data->instructor_id = $request->instructor_id;
         $data->user_id = $user_id;
         $data->save();
 
@@ -88,7 +91,8 @@ class CourseController extends Controller
     {
         $course = Course::findOrFail($id);
         $grades = Grade::all();
-        return view('courses.edit', compact('course', 'grades'));
+        $users = User::where('role', 'instructor')->get();
+        return view('courses.edit', compact('course', 'grades', 'users'));
     }
 
     /**
@@ -105,6 +109,7 @@ class CourseController extends Controller
         $course->name = $request->name;
         $course->grade_id = $request->grade_id;
         $course->price = $request->fee;
+        $course->instructor_id = $request->instructor_id;
         $course->update();
 
         return back()->withSuccess($course->name . ' course has been updated.<script> notify("success","Course has been created successfully.") </script> ');

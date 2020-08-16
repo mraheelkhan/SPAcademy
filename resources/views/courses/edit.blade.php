@@ -67,6 +67,24 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <label class="col-md-3 col-form-label">{{ __('Select Instructor') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                    <select name="instructor_id" class="form-control">
+                                        <option value="">Select Instructor</option>
+                                        @foreach($users as $instructor)
+                                        <option value="{{$instructor->id}}" {{ old('instructor_id') == $instructor->id ? "selected" : "" }}>{{ $instructor->firstname . " " . $instructor->lastname }}</option>
+                                        @endforeach
+                                    </select>
+                                    </div>
+                                    @if ($errors->has('instructor_id'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('instructor_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row">
                                 <label class="col-md-3 col-form-label">{{ __('Course Fee') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">

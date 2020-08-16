@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Requests\UserRequest;
+use App\Model\Grade;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -22,7 +23,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.new');
+        $grades = Grade::where('status', 1)->get();
+        return view('users.new', compact('grades'));
     }
 
     public function store(UserRequest $request)
@@ -31,6 +33,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
+            'grade_id' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -39,6 +42,17 @@ class UserController extends Controller
         $data->email = $request->email;
         $data->firstname = $request->firstname;
         $data->lastname = $request->lastname;
+        $data->role = $request->role;
+        if($data->role == 'instructor' || $data->role == 'admin'){
+            $grade_id = 0;
+        }
+        if($request->grade_id == 'none'){
+            $grade_id = 0;
+        } else {
+            $grade_id = $request->grade_id;
+        }
+        $data->grade_id = $grade_id;
+
         $data->password = Hash::make($request->password);
         $data->save();
         
