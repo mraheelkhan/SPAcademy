@@ -48,8 +48,8 @@ class HomeController extends Controller
 
             $diff_in_hours = $to->diffInDays($from);
             $class->difference = $diff_in_hours;
-            // if difference is lessthan 12 hours, do show the classes to student
-            if($diff_in_hours < 24){
+            // if difference is lessthan 30days, do show the classes to student
+            if($diff_in_hours < 31){
                 $class->isShow = true;
             } else {
                 $class->isShow = false;
