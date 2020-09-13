@@ -124,7 +124,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php $index = 1; @endphp
+                                    @php $index = 1; /* for Serial Number Purpose */ @endphp 
                                     @foreach($periods as $class)
                                     <tr>
                                         <td>{{$index}}</td>
