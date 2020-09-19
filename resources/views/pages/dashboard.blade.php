@@ -12,6 +12,7 @@
 </style>
 <div class="content">
     @cannot('passAdmin')
+    {{-- it won't show to admins --}}
     <div class="row">
         <div class="col-md-12">
             Get register yourself in courses.
