@@ -11,28 +11,68 @@
     }
 </style>
 <div class="content">
-    
+    <div class=" card">
+        <div class="col-md-12 card-body">
+            <h2> Select and apply for multiple courses</h2>
+            <div class="form ">
+                <form class="form-horizontal" method="POST" action="{{ route('applyBulk') }}">
+                    @csrf
+                    <table class="">
+                        <tr class="thead table">
+                            <td>
+
+                                Course Name
+                            </td>
+                            <td>
+                                Action
+                            </td>
+                        </tr>
+
+                    
+                    @foreach($courses as $course)
+                   <tr>
+                       <td>
+                        <p>{{ $course->name }}</p>
+                       </td>
+                       <td>
+                        <input id="courses[]" type="checkbox" name="courses[]" value="{{$course->id}}" class="form-control"/>
+                       </td>
+                   </tr>
+                       
+                    
+                    @endforeach
+                </table>
+                    <input type="submit" class="btn btn-primary"/>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="row card">
       <div class="col-md-12 card-body">
         @if (session('success'))
         <div class="alert alert-success" role="alert">
             {!! session('success') !!}
         </div>
-    @endif
-    @if (session('password_status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('password_status') }}
+        @endif
+        @if (session('error'))
+        <div class="alert alert-danger" role="alert">
+            {!! session('error') !!}
         </div>
-    @endif
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+        @endif
+        @if (session('password_status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('password_status') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
          <h2> Register a new course</h2>
 
          <form class="col-md-12" action="{{ route('applyStore') }}" method="POST" enctype="multipart/form-data">
@@ -102,5 +142,6 @@
         </form>
       </div>
     </div>
+   
 </div>
 @endsection

@@ -55,8 +55,11 @@ class HomeController extends Controller
                 $class->isShow = false;
             }
         endforeach;
-        // dd($classes);
-        return view('pages.dashboard', compact('classes', 'newApplicants', 'registeredStudents'));
+        
+
+        // for first time registration
+        $courses = Course::where('grade_id', auth()->user()->grade_id)->get();
+        return view('pages.dashboard', compact('classes', 'newApplicants', 'registeredStudents', 'courses'));
     }
 
     public function applyCourse(){
@@ -64,14 +67,32 @@ class HomeController extends Controller
         return view('register-course', compact('courses'));
     }
 
+    public function applyBulk(Request $request){
+        $data = [];
+        foreach($request->courses as $course){
+            $exists = ApplyCourse::where("user_id", auth()->user()->id)->where("course_id", $course)->exists();
+            if($exists){
+                return back()->withError('Already submited');
+            }  
+            $class = new ApplyCourse;
+            $class->user_id = auth()->user()->id;
+            $class->course_id  = $course;
+            $class->save();
+            $data[] = $class;
+        }
+        return back()->withSuccess('Courses application submitted to Admininstration.');
+    }
     public function applyStore(Request $request){
 
         // dd($request->all());
+        $exists = ApplyCourse::where("user_id", auth()->user()->id)->where("course_id", $request->course_id)->exists();
+        if($exists){
+            return back()->withError('Already submited');
+        }
         $class = new ApplyCourse;
         $class->user_id = auth()->user()->id;
         $class->course_id  = $request->course_id;
         $class->description = $request->description;
-
         $class->save();
         return back()->withSuccess('Course application submitted to Admininstration.');
     }
