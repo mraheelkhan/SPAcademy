@@ -103,6 +103,19 @@
                                         </span>
                                     @endif
                                 </div>
+                                <div class="input-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="nc-icon nc-single-02"></i>
+                                        </span>
+                                    </div>
+                                    <input name="phone" type="text" class="form-control" placeholder="phone number" value="{{ old('phone') }}" required autofocus>
+                                    @if ($errors->has('phone'))
+                                        <span class="invalid-feedback" style="display: block;" role="alert">
+                                            <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 <div class="form-check text-left">
                                     <label class="form-check-label">
                                         <input class="form-check-input" name="agree_terms_and_conditions" type="checkbox">

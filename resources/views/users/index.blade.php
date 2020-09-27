@@ -41,6 +41,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Phone</th>
                                         <th>Role</th>
                                         <th>Joining Date</th>
                                         <th>Actions</th>
@@ -53,6 +54,7 @@
                                         <td>{{$index}}</td>
                                         <td>{{ $user->firstname . " " . $user->lastname }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>{{ $user->phone }}</td>
                                         <td>{{ ucfirst($user->role) }}</td>
                                         <td>{{ $user->created_at->format('d/M/Y') }}</td>
                                         <td>
