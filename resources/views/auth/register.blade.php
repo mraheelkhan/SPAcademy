@@ -17,29 +17,16 @@
                         <div class="card-body ">
                             <form class="form" method="POST" action="{{ route('register') }}">
                                 @csrf
-                                <div class="input-group{{ $errors->has('firstname') ? ' has-danger' : '' }}">
+                                <div class="input-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="nc-icon nc-single-02"></i>
                                         </span>
                                     </div>
-                                    <input name="firstname" type="text" class="form-control" placeholder="firstname" value="{{ old('firstname') }}" required autofocus>
-                                    @if ($errors->has('firstname'))
+                                    <input name="name" type="text" class="form-control" placeholder="Name" value="{{ old('name') }}" required autofocus>
+                                    @if ($errors->has('name'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('firstname') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="input-group{{ $errors->has('lastname') ? ' has-danger' : '' }}">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="nc-icon nc-single-02"></i>
-                                        </span>
-                                    </div>
-                                    <input name="lastname" type="text" class="form-control" placeholder="lastname" value="{{ old('lastname') }}" required autofocus>
-                                    @if ($errors->has('lastname'))
-                                        <span class="invalid-feedback" style="display: block;" role="alert">
-                                            <strong>{{ $errors->first('lastname') }}</strong>
+                                            <strong>{{ $errors->first('name') }}</strong>
                                         </span>
                                     @endif
                                 </div>
