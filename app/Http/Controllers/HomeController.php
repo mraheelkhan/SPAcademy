@@ -7,6 +7,7 @@ use Mail;
 use App\Model\ApplyCourse;
 use App\Model\Course;
 use App\Model\Enrollment;
+use App\Model\Grade;
 use App\User;
 use App\Model\Period;
 use Carbon\Carbon;
@@ -32,6 +33,7 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->can('passStudent')) {
+            $grades = Grade::pluck('id');
             if (count(Auth::user()->apply_courses) == 0) {
                 if (in_array(Auth::user()->grade_id, [1,2,3,4,5,6,7,8,9])) {
                     $courses = Course::all();
@@ -95,7 +97,7 @@ class HomeController extends Controller
         }
 
         $mail_data = [
-            'name'=>Auth::user()->firstname. " " . Auth::user()->lastname,
+            'name'=>Auth::user()->name. " " . Auth::user()->lastname,
         ]; 
 
         Mail::send('mails.reg_mail', ['data' => $mail_data], function($message)
