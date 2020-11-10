@@ -42,17 +42,7 @@
         </div>
     </div> --}}
     @endcannot
-    @can('passStudent')
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-hover text-nowrap">
-                <tr>
-                    <th>Monday</th>
-                </tr>
-            </table>
-        </div>
-    </div>
-    @endcan
+
     @can('passAdmin')
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6">
@@ -129,7 +119,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">
-                                    {{ date("d-m-Y H:m:s a", strtotime($class->period_at))}}
+                                    {{ date("d-m-Y h:m:s a", strtotime($class->period_at))}}
                                 </p>
                                 <p class="card-title">
                                     {{ $class->course->name }}
