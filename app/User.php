@@ -58,4 +58,8 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function apply_courses() {
+        return $this->hasMany('App\Model\ApplyCourse', 'user_id', 'id');
+    }
 }

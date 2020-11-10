@@ -31,7 +31,18 @@
                     <div class="card">
                         <div class="header row">
                             <div class="col-md-6">
-                                <h4 class="title">{{$course->name . " - " . $course->grade->name }}  List</h4>
+                                <h4 class="title">{{$course->name . " - " . $course->grade->name }}  List 
+                                    <small>
+                                        @php $count = 0; 
+                                        foreach($users as $user) {
+                                            if(!in_array($user->id, $listcheck)) {
+                                                $count += 1;
+                                            }
+                                        }
+                                        @endphp
+
+                                        (Count: {{ $count }})
+                                    </small></h4>
                             </div>
                         </div>
                         <div class="content">
@@ -62,7 +73,7 @@
                             
                             <div class="row p-1">
                                 <div class="col-md-6 m-5">
-                                    <h2> Already Enrolled Students </h2>    
+                                    <h2> Already Enrolled Students <small>(Count: {{ count($course->enrollment) }})</small></h2>    
                                     @foreach($course->enrollment as $student)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                           

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Mail;
 use App\Model\ApplyCourse;
 use App\Model\Course;
 use App\Model\Enrollment;
@@ -29,6 +31,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->can('passStudent')) {
+            if (count(Auth::user()->apply_courses) == 0) {
+                if (in_array(Auth::user()->grade_id, [1,2,3,4,5,6,7,8,9])) {
+                    $courses = Course::all();
+                }
+                else {
+                    $courses = Course::all();
+                }
+                return view('apply-courses', compact('courses'));
+            }
+        }
         // change is_done to 1 for all classes that are beyond the time. 
         $periods = Period::where('period_at', '<', Carbon::now())
         ->update(['is_done' => 1 ]);
@@ -80,6 +93,21 @@ class HomeController extends Controller
             $class->save();
             $data[] = $class;
         }
+
+        $mail_data = [
+            'name'=>Auth::user()->firstname. " " . Auth::user()->lastname,
+        ]; 
+
+        Mail::send('mails.reg_mail', ['data' => $mail_data], function($message)
+        {
+          $message->to('saif.4843@gmail.com', null)->from(env("MAIL_USERNAME", "portal@psacademyonline.com"))->subject('New Student Registration!');
+        });
+
+        Mail::send('mails.reg_mail', ['data' => $mail_data], function($message)
+        {
+          $message->to('psa.academy.info@gmail.com', null)->from(env("MAIL_USERNAME", "portal@psacademyonline.com"))->subject('New Student Registration!');
+        });
+
         return back()->withSuccess('Courses application submitted to Admininstration.');
     }
     public function applyStore(Request $request){

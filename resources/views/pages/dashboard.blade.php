@@ -42,6 +42,17 @@
         </div>
     </div> --}}
     @endcannot
+    @can('passStudent')
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover text-nowrap">
+                <tr>
+                    <th>Monday</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    @endcan
     @can('passAdmin')
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6">

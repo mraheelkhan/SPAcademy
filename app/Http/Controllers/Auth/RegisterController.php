@@ -69,7 +69,7 @@ class RegisterController extends Controller
         // phone added
         $array = explode(' ', $data['name'], 2);
         $firstname = $array[0];
-        if (!is_null($array[0])) {
+        if (isset($array[1])) {
             $lastname = $array[1];
         }
         else {
