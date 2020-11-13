@@ -79,10 +79,9 @@
                                         </span>
                                     </div>
                                     <select class="form-control" name="grade_id">
-                                        <option value="1">9th Grade</option>
-                                        <option value="2">10th Grade</option>
-                                        <option value="3">11th Grade</option>
-                                        <option value="4">12th Grade</option>
+                                        @foreach($grades as $grade)
+                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                        @endforeach
                                     </select>
                                     @if ($errors->has('grade_id'))
                                         <span class="invalid-feedback" style="display: block;" role="alert">

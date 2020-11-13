@@ -33,12 +33,7 @@ class HomeController extends Controller
     {
         if (Auth::user()->can('passStudent')) {
             if (count(Auth::user()->apply_courses) == 0) {
-                if (in_array(Auth::user()->grade_id, [1,2,3,4,5,6,7,8,9])) {
-                    $courses = Course::all();
-                }
-                else {
-                    $courses = Course::all();
-                }
+                $courses = Auth::user()->grade->courses;
                 return view('apply-courses', compact('courses'));
             }
         }
