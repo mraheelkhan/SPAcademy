@@ -7,6 +7,7 @@ use Mail;
 use App\Model\ApplyCourse;
 use App\Model\Course;
 use App\Model\Enrollment;
+use App\Model\Grade;
 use App\User;
 use App\Model\Period;
 use Carbon\Carbon;
@@ -32,6 +33,7 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->can('passStudent')) {
+            $grades = Grade::pluck('id');
             if (count(Auth::user()->apply_courses) == 0) {
                 $courses = Auth::user()->grade->courses;
                 return view('apply-courses', compact('courses'));
@@ -90,10 +92,14 @@ class HomeController extends Controller
         }
 
         $mail_data = [
-            'name'=>Auth::user()->firstname. " " . Auth::user()->lastname,
+            'name'=>Auth::user()->name. " " . Auth::user()->lastname,
         ]; 
 
         Mail::send('mails.reg_mail', ['data' => $mail_data], function($message)
+        {
+          $message->to('irahilkhan@gmail.com', null)->from(env("MAIL_USERNAME", "portal@psacademyonline.com"))->subject('New Student Registration!');
+        });
+        /* Mail::send('mails.reg_mail', ['data' => $mail_data], function($message)
         {
           $message->to('saif.4843@gmail.com', null)->from(env("MAIL_USERNAME", "portal@psacademyonline.com"))->subject('New Student Registration!');
         });
@@ -101,7 +107,7 @@ class HomeController extends Controller
         Mail::send('mails.reg_mail', ['data' => $mail_data], function($message)
         {
           $message->to('psa.academy.info@gmail.com', null)->from(env("MAIL_USERNAME", "portal@psacademyonline.com"))->subject('New Student Registration!');
-        });
+        }); */
 
         return back()->withSuccess('Courses application submitted to Admininstration.');
     }
