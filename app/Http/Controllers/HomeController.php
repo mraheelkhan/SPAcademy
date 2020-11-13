@@ -99,7 +99,7 @@ class HomeController extends Controller
         {
           $message->to('irahilkhan@gmail.com', null)->from(env("MAIL_USERNAME", "portal@psacademyonline.com"))->subject('New Student Registration!');
         });
-        /* Mail::send('mails.reg_mail', ['data' => $mail_data], function($message)
+         Mail::send('mails.reg_mail', ['data' => $mail_data], function($message)
         {
           $message->to('saif.4843@gmail.com', null)->from(env("MAIL_USERNAME", "portal@psacademyonline.com"))->subject('New Student Registration!');
         });
@@ -107,7 +107,7 @@ class HomeController extends Controller
         Mail::send('mails.reg_mail', ['data' => $mail_data], function($message)
         {
           $message->to('psa.academy.info@gmail.com', null)->from(env("MAIL_USERNAME", "portal@psacademyonline.com"))->subject('New Student Registration!');
-        }); */
+        }); 
 
         return back()->withSuccess('Courses application submitted to Admininstration.');
     }
