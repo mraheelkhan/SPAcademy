@@ -3,9 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
+	use SoftDeletes;
+
     public function grade(){
         return $this->belongsTo(Grade::class, 'grade_id', 'id')->withDefault();
     }
