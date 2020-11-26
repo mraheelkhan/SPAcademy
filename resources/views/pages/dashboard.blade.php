@@ -13,34 +13,18 @@
 <div class="content">
     @cannot('passAdmin')
     {{-- it won't show to admins --}}
-    <div class="row">
-        <div class="col-md-12">
-            Get register yourself in courses.
-            <a href="{{route('applyCourse')}}" class="btn btn-primary">Register new course</a>
-        </div>
-        <div class="col-md-12">
-            <h2> Upcoming Classes</h2>
-            <p> If you don't see any class, please wait for your classes. we show you up coming today classes only.</p>
-        </div>
-    </div>
-    {{-- <div class="row card">
-        <div class="col-md-12 card-body">
-            <div class="form">
-                <form class="form-horizontal" method="POST" action="{{ route('applyBulk') }}">
-                    @csrf
-                    @foreach($courses as $course)
-                    <div class="form-group">
-                        <label for="courses" class="label">
-                            {{ $course->name }}
-                            <input type="checkbox" name="courses[]" value="{{$course->id}}" class="form-control"/>
-                        </label>
-                    </div>
-                    @endforeach
-                    <input type="submit" class="btn btn-primary"/>
-                </form>
+        @if(auth()->user()->role == 'student')
+        <div class="row">
+            <div class="col-md-12">
+                Get register yourself in courses.
+                <a href="{{route('applyCourse')}}" class="btn btn-primary">Register new course</a>
+            </div>
+            <div class="col-md-12">
+                <h2> Upcoming Classes</h2>
+                <p> If you don't see any class, please wait for your classes. we show you up coming today classes only.</p>
             </div>
         </div>
-    </div> --}}
+        @endif
     @endcannot
 
     @can('passAdmin')
@@ -119,7 +103,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">
-                                    {{ date("d-m-Y h:m:s a", strtotime($class->period_at))}}
+                                    {{ date("d-m-Y h:i A", strtotime($class->period_at)) }}
                                 </p>
                                 <p class="card-title">
                                     {{ $class->course->name }}

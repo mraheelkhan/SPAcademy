@@ -45,11 +45,20 @@ class HomeController extends Controller
 
         $newApplicants = ApplyCourse::where('is_new', true)->count();
         $registeredStudents = User::where('role', 'student')->count();
-        $course_ids = Enrollment::where('user_id', auth()->user()->id)->pluck('course_id');
-        $classes = Period::whereIn('course_id', $course_ids)
-                    ->where('is_done', 0)
-                    ->orderBy('period_at', 'desc')
-                    ->get();
+        
+        if( auth()->user()->role == 'student' ){
+            $course_ids = Enrollment::where('user_id', auth()->user()->id)->pluck('course_id');
+            $classes = Period::whereIn('course_id', $course_ids)
+                        ->where('is_done', 0)
+                        ->orderBy('period_at', 'desc')
+                        ->get();
+        } else {
+            $course_ids = Course::where('instructor_id', auth()->user()->id)->pluck('id');
+            $classes = Period::whereIn('course_id', $course_ids)
+                        ->where('is_done', 0)
+                        ->orderBy('period_at', 'desc')
+                        ->get();
+        }
         // dd($classes);
         //checking if difference is lessthan 12 hours
         foreach($classes as $class):

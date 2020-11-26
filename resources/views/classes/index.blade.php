@@ -115,7 +115,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Course</th>
-                                        <th>Group</th>
+                                        <th>Grade</th>
                                         <th>Is Done</th>
                                         <th>Link</th>
                                         <th>Date at</th>
