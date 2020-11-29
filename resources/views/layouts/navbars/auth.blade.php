@@ -1,13 +1,5 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
-        {{-- <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-            <div class="logo-image-small">
-                <img src="{{ asset('paper') }}/img/logo-small.png">
-            </div>
-        </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-            {{ __('Creative Tim') }}
-        </a> --}}
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
@@ -18,39 +10,15 @@
                 </a>
             </li>
             @cannot('passAdmin')
+            @if(auth()->user()->role != 'instructor')
             <li class="{{ $elementActive == 'register-course' ? 'active' : '' }}">
                 <a href="{{ route('applyCourse') }}">
                     <i class="nc-icon nc-bank"></i>
                 <p>{{ __('Register Course') }}  
                 </a>
             </li>
+            @endif
             @endcannot
-            {{-- <li class="{{ $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
-                <a data-toggle="collapse" aria-expanded="true" href="#laravelExamples">
-                    <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i>
-                    <p>
-                            {{ __('Laravel examples') }}
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse show" id="laravelExamples">
-                    <ul class="nav">
-                        <li class="{{ $elementActive == 'profile' ? 'active' : '' }}">
-                            <a href="{{ route('profile.edit') }}">
-                                <span class="sidebar-mini-icon">{{ __('UP') }}</span>
-                                <span class="sidebar-normal">{{ __(' User Profile ') }}</span>
-                            </a>
-                        </li>
-                        <li class="{{ $elementActive == 'user' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'user') }}">
-                                <span class="sidebar-mini-icon">{{ __('U') }}</span>
-                                <span class="sidebar-normal">{{ __(' User Management ') }}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li> --}}
-
             @can('passAdmin')
             @php 
             $newApplicants = App\Model\ApplyCourse::where('is_new', true)->count();
@@ -83,12 +51,6 @@
                     <p>{{ __('Enroll Students') }}</p>
                 </a>
             </li>
-            {{-- <li class="{{ $elementActive == 'offeredcourses' ? 'active' : '' }}">
-                <a href="{{ route('offeredcourse.index') }}">
-                    <i class="fas fa-check-circle"></i>
-                    <p>{{ __('Offered Courses') }}</p>
-                </a>
-            </li> --}}
             <li class="{{ $elementActive == 'classes' ? 'active' : '' }}">
                 <a href="{{ route('class.index') }}">
                     <i class="fas fa-chalkboard-teacher"></i>

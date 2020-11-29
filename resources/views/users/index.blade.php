@@ -51,6 +51,10 @@
                                 <tbody>
                                     @php $index = 1; @endphp
                                     @foreach($users as $user)
+                                        {{-- not to show admin --}}
+                                        @if($user->id == auth()->user()->id)
+                                        @continue 
+                                        @endif
                                     <tr>
                                         <td>{{$index}}</td>
                                         <td>{{ $user->firstname . " " . $user->lastname }}</td>
